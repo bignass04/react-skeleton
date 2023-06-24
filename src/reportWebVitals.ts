@@ -8,7 +8,7 @@ const reportWebVitals = (onPerfEntry?: ReportHandler): void => {
       getFCP(onPerfEntry)
       getLCP(onPerfEntry)
       getTTFB(onPerfEntry)
-    }).catch((e: any) => { console.error(e) })
+    }).catch((e) => { console.error(e) })
   }
 }
 

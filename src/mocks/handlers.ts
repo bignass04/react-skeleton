@@ -3,7 +3,7 @@ import { rest } from 'msw'
 // 2. Describe network behavior with request handlers.
 export const handlers = [
   rest.get('https://api.github.com/users', async (req, res, ctx) =>
-    await res(
+    res(
       ctx.delay(1000),
       ctx.status(200),
       ctx.json(userList)
@@ -11,28 +11,28 @@ export const handlers = [
   ),
   rest.get('https://api.github.com/users/:id/repos', async (req, res, ctx) => {
     if (req.params.id === 'wycats') {
-      return await res(
+      return res(
         ctx.status(500),
         ctx.json({
           error: new Error('Something went wrong during repository fetch')
         })
       )
     }
-    return await res(
+    return res(
       ctx.delay(2000),
       ctx.status(200),
       ctx.json(repositories)
     )
   }),
   rest.get('https://api.github.com/users/:id/orgs', async (req, res, ctx) =>
-    await res(
+    res(
       ctx.delay(2000),
       ctx.status(200),
       ctx.json(organizations)
     )
   ),
   rest.get('https://api.github.com/users/:id/followers', async (req, res, ctx) =>
-    await res(
+    res(
       ctx.delay(2000),
       ctx.status(200),
       ctx.json(followers)
